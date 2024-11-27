@@ -2,7 +2,7 @@
   "name": "r-m-character-wiki",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/R-M-Character-Wiki",
+  "homepage": "https://kiwylai.github.io/R-M-Character-Wiki",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@testing-library/jest-dom": "^5.17.0",
