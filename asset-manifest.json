@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/R-M-Character-Wiki/static/css/main.e54d6cff.css",
+    "main.js": "/R-M-Character-Wiki/static/js/main.cdc6381d.js",
+    "static/js/453.8c3c9ea8.chunk.js": "/R-M-Character-Wiki/static/js/453.8c3c9ea8.chunk.js",
+    "index.html": "/R-M-Character-Wiki/index.html",
+    "main.e54d6cff.css.map": "/R-M-Character-Wiki/static/css/main.e54d6cff.css.map",
+    "main.cdc6381d.js.map": "/R-M-Character-Wiki/static/js/main.cdc6381d.js.map",
+    "453.8c3c9ea8.chunk.js.map": "/R-M-Character-Wiki/static/js/453.8c3c9ea8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e54d6cff.css",
+    "static/js/main.cdc6381d.js"
+  ]
+}
