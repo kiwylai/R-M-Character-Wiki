@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
-import Filters from "./components/Filters/Filters";
-import Cards from "./components/Cards/Cards";
-import Paginaition from "./components/Pagination/Paginaition";
+import React, { useState, useEffect } from "react";
+
 import Search from "./components/Search/Search";
+import Card from "./components/Cards/Cards";
+import Pagination from "./components/Pagination/Paginaition";
+import Filter from "./components/Filters/Filters";
 import Navbar from "./components/Navbar/Navbar";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Episodes from "./Pages/Episodes";
 import Location from "./Pages/Location";
@@ -17,7 +19,6 @@ function App() {
       <div className="App">
         <Navbar />
       </div>
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<CardDetails />} />
@@ -33,53 +34,47 @@ function App() {
 }
 
 const Home = () => {
-  let [pageNumber, setPageNumber] = useState(1);
-  let [fetchedData, updateFetchData] = useState([]);
+  let [pageNumber, updatePageNumber] = useState(1);
+  let [status, updateStatus] = useState("");
+  let [gender, updateGender] = useState("");
+  let [species, updateSpecies] = useState("");
+  let [fetchedData, updateFetchedData] = useState([]);
   let [search, setSearch] = useState("");
-  let [status, setStatus] = useState("");
-  let [gender, setGender] = useState("");
-  let [species, setSpecies] = useState("");
   let { info, results } = fetchedData;
 
   let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
 
-  useEffect(
-    (info) => {
-      (async function () {
-        let data = await fetch(api).then((res) => res.json());
-        updateFetchData(data);
-      })();
-    },
-    [api]
-  );
-
+  useEffect(() => {
+    (async function () {
+      let data = await fetch(api).then((res) => res.json());
+      updateFetchedData(data);
+    })();
+  }, [api]);
   return (
     <div className="App">
-      <h1 className="text-center mb-4">Characters</h1>
-      <Search setPageNumber={setPageNumber} setSearch={setSearch}></Search>
-
+      <h1 className="text-center mb-3">Characters</h1>
+      <Search setSearch={setSearch} updatePageNumber={updatePageNumber} />
       <div className="container">
         <div className="row">
-          <Filters
-            setStatus={setStatus}
-            setPageNumber={setPageNumber}
-            setGender={setGender}
-            setSpecies={setSpecies}
-          ></Filters>
-
+          <Filter
+            pageNumber={pageNumber}
+            status={status}
+            updateStatus={updateStatus}
+            updateGender={updateGender}
+            updateSpecies={updateSpecies}
+            updatePageNumber={updatePageNumber}
+          />
           <div className="col-lg-8 col-12">
             <div className="row">
-              <Cards page="/" results={results}></Cards>
+              <Card page="/" results={results} />
             </div>
           </div>
         </div>
       </div>
-
-      <Paginaition
+      <Pagination
         info={info}
         pageNumber={pageNumber}
-        setPageNumber={setPageNumber}
-        div
+        updatePageNumber={updatePageNumber}
       />
     </div>
   );
